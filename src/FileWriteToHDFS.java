@@ -23,14 +23,14 @@ public class FileWriteToHDFS {
 
 //Get configuration of Hadoop system
         Configuration conf = new Configuration();
-        System.out.println("Connecting to -- "+conf.get("fs.defaultFS"));
+        System.out.println("Connecting to -- " + conf.get("fs.defaultFS"));
 
 //Destination file in HDFS
         FileSystem fs = FileSystem.get(URI.create(dst), conf);
         OutputStream out = fs.create(new Path(dst));
 
 //Copy file from local to HDFS
-        IOUtils.copyBytes(in, out, 4096, true);
+        IOUtils.copyBytes(in, out, 32 * 1024, true);
 
         System.out.println(dst + " copied to HDFS");
 

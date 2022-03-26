@@ -1,12 +1,12 @@
-import java.io.IOException;
+import org.apache.hadoop.util.Time;
+
+import java.io.FileWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
 import java.util.ArrayList;
 
 public class Server {
-    public static void main(String[] args) throws IOException
+    public static void main(String[] args) throws Exception
     {
         //Create a socket to listen at port 3500
         DatagramSocket socket = new DatagramSocket(3500);
@@ -19,17 +19,27 @@ public class Server {
 
         DatagramPacket packet = null;
         while (true){
-            // Step 2 : create a DatgramPacket to receive the data.
+
             packet = new DatagramPacket(receive, receive.length);
 
-            // Step 3 : revieve the data in byte buffer.
             socket.receive(packet);
 
             buffer.add(toString(receive)) ;
             System.out.println("Client:-" + toString(receive));
 
-            if(buffer.size() == 100){
-                HDFSWrite(buffer);
+            if(buffer.size() == 10){
+                System.out.println("Writing to HDFS..");
+
+                String fileName = "1000"+ ".log";
+                FileWriter writer = new FileWriter(fileName);
+                for(int i=0; i<10; i++)
+                    writer.write(buffer.get(i));
+                writer.close();
+
+                String arg[] = new String[2];
+                arg[0] = fileName;
+                arg[1] = "/" + fileName;
+                FileWriteToHDFS.main(arg);
             }
             // Clear the buffer after every message.
             receive = new byte[65535];

@@ -29,5 +29,48 @@
         <jarDirectory url="file:///usr/local/hadoop/share/hadoop/common/lib" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES />
+        <JAVADOC>
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/api" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-auth/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-hdfs-httpfs/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-mapreduce-client/hadoop-mapreduce-client-app/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-mapreduce-client/hadoop-mapreduce-client-common/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-mapreduce-client/hadoop-mapreduce-client-hs-plugins/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-mapreduce-client/hadoop-mapreduce-client-hs/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-mapreduce-client/hadoop-mapreduce-client-jobclient/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-mapreduce-client/hadoop-mapreduce-client-nativetask/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-mapreduce-client/hadoop-mapreduce-client-shuffle/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-mapreduce-client/hadoop-mapreduce-client-uploader/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-project-dist/hadoop-common/build/source/hadoop-common-project/hadoop-common/target/api" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-project-dist/hadoop-hdfs-client/build/source/hadoop-hdfs-project/hadoop-hdfs-client/target/api" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-project-dist/hadoop-hdfs-rbf/build/source/hadoop-hdfs-project/hadoop-hdfs-rbf/target/api" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-project-dist/hadoop-hdfs/build/source/hadoop-hdfs-project/hadoop-hdfs/target/api" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-yarn/hadoop-yarn-api/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-yarn/hadoop-yarn-applications/hadoop-yarn-applications-distributedshell/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-yarn/hadoop-yarn-applications/hadoop-yarn-applications-mawo/hadoop-yarn-applications-mawo-core/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-yarn/hadoop-yarn-applications/hadoop-yarn-applications-unmanaged-am-launcher/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-yarn/hadoop-yarn-client/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-yarn/hadoop-yarn-common/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-yarn/hadoop-yarn-csi/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-applicationhistoryservice/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-common/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-nodemanager/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-router/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-sharedcachemanager/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-timeline-pluginstorage/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-timelineservice-documentstore/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-timelineservice-hbase/hadoop-yarn-server-timelineservice-hbase-client/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-timelineservice-hbase/hadoop-yarn-server-timelineservice-hbase-common/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-timelineservice-hbase/hadoop-yarn-server-timelineservice-hbase-server/hadoop-yarn-server-timelineservice-hbase-server-1/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-timelineservice/apidocs" />
+          <root url="file:///usr/local/hadoop/share/doc/hadoop/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-web-proxy/apidocs" />
+        </JAVADOC>
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
