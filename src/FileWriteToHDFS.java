@@ -27,6 +27,7 @@ public class FileWriteToHDFS {
 
 //Destination file in HDFS
         FileSystem fs = FileSystem.get(URI.create(dst), conf);
+        System.out.println(dst);
         OutputStream out = fs.create(new Path(dst));
 
 //Copy file from local to HDFS

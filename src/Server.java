@@ -3,7 +3,10 @@ import org.apache.hadoop.util.Time;
 import java.io.FileWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Server {
     public static void main(String[] args) throws Exception
@@ -30,7 +33,10 @@ public class Server {
             if(buffer.size() == 10){
                 System.out.println("Writing to HDFS..");
 
-                String fileName = "1000"+ ".log";
+                DateFormat df = new SimpleDateFormat("dd_MM_yyyy");
+                String data = df.format(new Date());
+
+                String fileName = data + ".log";
                 FileWriter writer = new FileWriter(fileName);
                 for(int i=0; i<10; i++)
                     writer.write(buffer.get(i));
