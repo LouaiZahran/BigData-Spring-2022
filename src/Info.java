@@ -1,9 +1,9 @@
-class RAMInfo{
+class RAM {
     public double Total;
     public double Free;
 }
 
-class DiskInfo{
+class Disk {
     public double Total;
     public double Free;
 }
@@ -12,10 +12,10 @@ public class Info {
     public String serviceName;
     public long Timestamp;
     public double CPU;
-    public RAMInfo RAM;
-    public DiskInfo Disk;
+    public RAM RAM;
+    public Disk Disk;
 
-    public Info(String serviceName, long timestamp, double CPU, RAMInfo RAM, DiskInfo disk) {
+    public Info(String serviceName, long timestamp, double CPU, RAM RAM, Disk disk) {
         this.serviceName = serviceName;
         this.Timestamp = timestamp;
         this.CPU = CPU;
