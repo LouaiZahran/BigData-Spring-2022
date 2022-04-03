@@ -3,11 +3,11 @@ public class DataGenerator {
         long timestamp = 1000;
         double CPU = Math.random();
 
-        RAMInfo RAM = new RAMInfo();
+        RAM RAM = new RAM();
         RAM.Total = RAMTotal;
         RAM.Free = Math.random() * RAM.Total;
 
-        DiskInfo Disk = new DiskInfo();
+        Disk Disk = new Disk();
         Disk.Total = DiskTotal;
         Disk.Free = Math.random() * Disk.Total;
 
