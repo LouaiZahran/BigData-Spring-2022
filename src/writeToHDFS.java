@@ -12,11 +12,15 @@ import org.apache.hadoop.io.IOUtils;
 
 public class writeToHDFS {
     public static void main(String[] args) throws IOException {
-        Configuration configuration = new Configuration();
-        configuration.set("fs.defaultFS", "hdfs://192.168.1.4:9000");
-        FileSystem fileSystem = FileSystem.get(configuration);
+        Configuration conf = new Configuration();
+        conf.set("fs.hdfs.impl", "org.apache.hadoop.hdfs.DistributedFileSystem");
+        Path coreSite = new Path("/usr/local/hadoop/etc/hadoop/core-site.xml");
+        Path hdfsSite = new Path("/usr/local/hadoop/etc/hadoop/hdfs-site.xml");
+        conf.addResource(coreSite);
+        conf.addResource(hdfsSite);
+        FileSystem fileSystem = FileSystem.get(conf);
         String fileName = "read_write_hdfs_example.txt";
-        Path hdfsWritePath = new Path("/" + fileName);
+        Path hdfsWritePath = new Path("27_03_2022.log");
 
         fileSystem.setReplication(hdfsWritePath, (short) 1);
         if(!fileSystem.exists(hdfsWritePath)){

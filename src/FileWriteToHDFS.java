@@ -23,10 +23,16 @@ public class FileWriteToHDFS {
 
 //Get configuration of Hadoop system
         Configuration conf = new Configuration();
+        conf.set("fs.hdfs.impl", "org.apache.hadoop.hdfs.DistributedFileSystem");
+        Path coreSite = new Path("/usr/local/hadoop/etc/hadoop/core-site.xml");
+        Path hdfsSite = new Path("/usr/local/hadoop/etc/hadoop/hdfs-site.xml");
+        conf.addResource(coreSite);
+        conf.addResource(hdfsSite);
         System.out.println("Connecting to -- " + conf.get("fs.defaultFS"));
 
 //Destination file in HDFS
         FileSystem fs = FileSystem.get(URI.create(dst), conf);
+        System.out.println(fs.getConf().get("dfs.support.append"));
         System.out.println(dst);
         OutputStream out = fs.create(new Path(dst));
 

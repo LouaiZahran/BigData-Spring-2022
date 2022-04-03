@@ -1,11 +1,11 @@
 class RAMInfo{
-    public double total;
-    public double free;
+    public double Total;
+    public double Free;
 }
 
 class DiskInfo{
-    public double total;
-    public double free;
+    public double Total;
+    public double Free;
 }
 
 public class Info {

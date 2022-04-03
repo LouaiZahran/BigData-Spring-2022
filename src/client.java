@@ -12,13 +12,13 @@ public class client {
         Gson parser = new Gson();
         DatagramSocket ds = new DatagramSocket();
 
-        InetAddress ip = InetAddress.getLocalHost();
+        InetAddress ip = InetAddress.getByName("192.168.43.149");
         byte buf[] = null;
 
         Integer i=0;
         while (true)
         {
-            Thread.sleep(500);
+            Thread.sleep(10);
             Info msg = DataGenerator.generate(serviceName, RAM, Disk);
             String inp = parser.toJson(msg);
 
@@ -28,10 +28,6 @@ public class client {
                         new DatagramPacket(buf, buf.length, ip, 3500);
 
             ds.send(DpSend);
-
-            // break the loop if user enters "bye"
-            if (inp.equals("bye"))
-                break;
         }
     }
 }
