@@ -3,7 +3,6 @@ package com.university.bigdata.milestone2;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.shaded.com.cedarsoftware.util.io.JsonObject;
 import org.apache.hadoop.shaded.net.minidev.json.JSONObject;
 import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.web.bind.annotation.*;
