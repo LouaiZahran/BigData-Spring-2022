@@ -32,13 +32,24 @@ public class writeToParquet {
 
         return schema;
     }
+    public static void addToRecord(int recordNumber, String name, double value){
 
+    }
     private static List<GenericData.Record> createRecords(Schema schema){
         List<GenericData.Record> recordList = new ArrayList<>();
         for(int i = 1; i <= 15; i++) {
             GenericData.Record record = new GenericData.Record(schema);
-            record.put("id", i);
-            record.put("empName", i+"a");
+            if(i%2 == 0)record.put("time", i);
+            record.put("service", i*15);
+            if(i%2 == 1)record.put("time", i);
+            record.put("count", i);
+            record.put("CPU", i*.5);
+            record.put("RAM", i);
+            record.put("DISK", i);
+            record.put("CPU_MAX", i);
+            record.put("RAM_MAX", i);
+            record.put("DISK_MAX", i);
+
             recordList.add(record);
         }
         return recordList;

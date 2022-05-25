@@ -18,27 +18,27 @@
     },
     {
       "name":	"CPU",
-      "type":	"int"
+      "type":	"double"
     },
     {
       "name":	"RAM",
-      "type":	"int"
+      "type":	"double"
     },
     {
       "name":	"DISK",
-      "type":	"int"
+      "type":	"double"
     },
     {
       "name":	"CPU_MAX",
-      "type":	"int"
+      "type":	"double"
     },
     {
       "name":	"RAM_MAX",
-      "type":	"int"
+      "type":	"double"
     },
     {
       "name":	"DISK_MAX",
-      "type":	"int"
+      "type":	"double"
     }
   ]
 }

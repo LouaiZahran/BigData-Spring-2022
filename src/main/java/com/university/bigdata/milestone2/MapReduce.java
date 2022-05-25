@@ -14,6 +14,8 @@ import org.apache.hadoop.shaded.com.google.gson.Gson;
 
 import java.io.IOException;
 
+import static java.lang.Math.max;
+
 public class MapReduce {
 
     static long start, end;
@@ -34,18 +36,22 @@ public class MapReduce {
 
                 if(currentInfo.Timestamp < start || currentInfo.Timestamp > end)
                     continue;
-
+                long time=(currentInfo.Timestamp - 1647938697)/60;
                 //CPU utilization
-                word.set(currentInfo.serviceName+"_CPU");
+                word.set(currentInfo.serviceName+"_CPU_"+time);
                 context.write(word, new DoubleWritable(currentInfo.CPU));
+
+                word.set(currentInfo.serviceName+"_CPU_MAX_"+time);
+                context.write(word, new DoubleWritable(currentInfo.CPU));
+
                 //Disk utilization
-                word.set(currentInfo.serviceName+"_Disk");
+                word.set(currentInfo.serviceName+"_DISK_"+time);
                 context.write(word, new DoubleWritable(currentInfo.Disk.Free/currentInfo.Disk.Total));
                 // RAM utilization
-                word.set(currentInfo.serviceName+"_RAM");
+                word.set(currentInfo.serviceName+"_RAM_"+time);
                 context.write(word, new DoubleWritable(currentInfo.RAM.Free/currentInfo.RAM.Total));
                 // count of health messages for each service
-                word.set(currentInfo.serviceName);
+                word.set(currentInfo.serviceName+"_"+time);
                 context.write(word, one);
             }
         }
@@ -55,18 +61,19 @@ public class MapReduce {
         private DoubleWritable result = new DoubleWritable();
 
         public void reduce(Text key, Iterable<DoubleWritable> values, Context context ) throws IOException, InterruptedException {
-            Double sum = 0.0;
-            int count = 0;
-            for (DoubleWritable val : values) {
-                sum += val.get();
-                count++;
-            }
-            //if(key.toString().length() == 9)
-            result.set(sum);
-            //else
-                //result.set(sum/count);
-            //System.out.println("---------->" + key.toString());
-            //System.out.println("---------->" + key.toString().length());
+            Double ans = 0.0;
+            if(key.toString().length() <15 || key.toString().charAt(14)!= 'M')
+                for (DoubleWritable val : values) {
+                    ans += val.get();
+                }
+            else
+                for (DoubleWritable val : values) {
+                    ans = max(val.get(),ans);
+                }
+            result.set(ans);
+
+            System.out.println("---------->" + key.toString());
+
             context.write(key, result);
         }
     }
