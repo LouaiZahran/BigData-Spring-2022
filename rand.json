@@ -1,0 +1,45 @@
+  {
+    "_id": "628e87931d78c993c5248467",
+    "index": 0,
+    "guid": "e7c26135-2545-4bc9-9447-6758029e54ff",
+    "isActive": false,
+    "balance": "$3,554.13",
+    "picture": "http://placehold.it/32x32",
+    "age": 33,
+    "eyeColor": "green",
+    "name": "Margie Newman",
+    "gender": "female",
+    "company": "SKYPLEX",
+    "email": "margienewman@skyplex.com",
+    "phone": "+1 (913) 575-2216",
+    "address": "415 Whitty Lane, Nile, Georgia, 4231",
+    "about": "Et ipsum minim occaecat veniam anim esse commodo officia incididunt. Id ea adipisicing consectetur anim. In eiusmod velit qui ad Lorem quis proident tempor. Amet sint ullamco nulla excepteur aliquip velit esse do. Non velit quis commodo do.\r\n",
+    "registered": "2018-06-25T05:51:44 -02:00",
+    "latitude": -73.06251,
+    "longitude": -105.450204,
+    "tags": [
+      "culpa",
+      "consequat",
+      "eu",
+      "in",
+      "non",
+      "esse",
+      "exercitation"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Shawna Bryan"
+      },
+      {
+        "id": 1,
+        "name": "Brandie Prince"
+      },
+      {
+        "id": 2,
+        "name": "Leila Schultz"
+      }
+    ],
+    "greeting": "Hello, Margie Newman! You have 4 unread messages.",
+    "favoriteFruit": "apple"
+  }

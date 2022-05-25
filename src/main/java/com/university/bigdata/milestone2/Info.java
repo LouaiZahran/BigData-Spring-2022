@@ -25,4 +25,11 @@ public class Info {
         this.Disk = disk;
     }
 
+    public void print(){
+        System.out.println("Service Name: " + serviceName);
+        System.out.println("Timestamp: " + Timestamp);
+        System.out.println("CPU: " + CPU);
+        System.out.println("RAM: " + RAM.Free);
+        System.out.println("Disk: " + Disk.Free);
+    }
 }
