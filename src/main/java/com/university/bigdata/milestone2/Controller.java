@@ -42,7 +42,7 @@ public class Controller {
         conf.addResource(hdfsSite);
 
         FileSystem fileSystem = FileSystem.get(conf);
-        InputStream inputStream = fileSystem.open(new Path("/user/louai/output/part-r-00000"));
+        InputStream inputStream = fileSystem.open(new Path("/health_out/part-r-00000"));
         String contents = toString(inputStream.readAllBytes());
 
         Scanner scanner = new Scanner(contents);

@@ -1,0 +1,44 @@
+{
+  "type":	"record",
+  "name":	"view",
+  "doc":	"views records",
+  "fields":
+    [{
+      "name":	"time",
+      "type":	"int"
+
+    },
+    {
+      "name":	"service",
+      "type":	"int"
+    },
+    {
+      "name":	"count",
+      "type":	"int"
+    },
+    {
+      "name":	"CPU",
+      "type":	"int"
+    },
+    {
+      "name":	"RAM",
+      "type":	"int"
+    },
+    {
+      "name":	"DISK",
+      "type":	"int"
+    },
+    {
+      "name":	"CPU_MAX",
+      "type":	"int"
+    },
+    {
+      "name":	"RAM_MAX",
+      "type":	"int"
+    },
+    {
+      "name":	"DISK_MAX",
+      "type":	"int"
+    }
+  ]
+}

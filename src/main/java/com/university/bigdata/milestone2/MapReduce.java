@@ -30,6 +30,8 @@ public class MapReduce {
                 message=message.concat("}}");
                 Info currentInfo = parser.fromJson(message, Info.class);
 
+                //currentInfo.Timestamp
+
                 if(currentInfo.Timestamp < start || currentInfo.Timestamp > end)
                     continue;
 
@@ -59,8 +61,12 @@ public class MapReduce {
                 sum += val.get();
                 count++;
             }
-            result.set(sum/count);
+            //if(key.toString().length() == 9)
+            result.set(sum);
+            //else
+                //result.set(sum/count);
             //System.out.println("---------->" + key.toString());
+            //System.out.println("---------->" + key.toString().length());
             context.write(key, result);
         }
     }
@@ -85,8 +91,8 @@ public class MapReduce {
         job.setReducerClass(IntSumReducer.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(DoubleWritable.class);
-        FileInputFormat.addInputPath(job, new Path("/user/louai/health_data"));
-        Path outputPath = new Path("/user/louai/output");
+        FileInputFormat.addInputPath(job, new Path("/health_data/health_0.json"));
+        Path outputPath = new Path("/health_out");
         FileSystem fileSystem = FileSystem.get(conf);
         if(fileSystem.exists(outputPath))
             fileSystem.delete(outputPath);
