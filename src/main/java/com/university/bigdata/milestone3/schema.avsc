@@ -5,7 +5,7 @@
   "fields":
     [{
       "name":	"time",
-      "type":	"int"
+      "type":	"long"
 
     },
     {
