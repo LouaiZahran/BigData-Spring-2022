@@ -55,6 +55,11 @@
 			<artifactId>parquet-avro</artifactId>
 			<version>1.8.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.duckdb</groupId>
+			<artifactId>duckdb_jdbc</artifactId>
+			<version>0.3.3</version>
+		</dependency>
 	</dependencies>
 
 	<build>
