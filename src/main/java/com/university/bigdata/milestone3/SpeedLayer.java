@@ -163,13 +163,13 @@ public class SpeedLayer implements Obs{
     }
 
     public static void main(String[] args) {
-
+/*
         if (args.length == 0) {
             System.out.println("No files provided.");
             System.exit(0);
         }
-
-        wordCount(args[0]);
+*/
+        wordCount("/home/moaz/health.txt");
     }
 
     @Override

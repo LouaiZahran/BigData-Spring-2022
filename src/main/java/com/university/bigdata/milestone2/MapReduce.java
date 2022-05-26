@@ -87,8 +87,6 @@ public class MapReduce extends Configured implements Tool{
 
     public static class IntSumReducer extends Reducer<Text,DoubleWritable,Void,GenericRecord> {
 
-        private	GenericRecord record = new GenericData.Record(schema);
-
         public void reduce(Text key, Iterable<DoubleWritable> values, Context context ) throws IOException, InterruptedException {
             double ans = 0.0;
             if(!key.toString().contains("MAX"))
