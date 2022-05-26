@@ -101,6 +101,8 @@ public class SpeedLayer implements Obs{
         List<GenericData.Record> recordList = new ArrayList<>(records.values());
 
         ParquetWriter.writeToParquetFile(recordList, schema);
+
+        sparkContext.stop();
     }
 
     public static void main(String[] args) {
@@ -115,6 +117,6 @@ public class SpeedLayer implements Obs{
 
     @Override
     public void wakeup() {
-        launchSpark("SpeedLayer/messages");
+        launchSpark("health_0.json");
     }
 }

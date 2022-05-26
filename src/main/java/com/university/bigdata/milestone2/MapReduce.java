@@ -48,7 +48,7 @@ public class MapReduce extends Configured implements Tool, Obs {
     @Override
     public void wakeup() {
         String []args=new String[1];
-        args[0]="/home/moaz/Downloads/health_data/health_"+Day+".json";
+        args[0]="health_"+Day+".json";
         try {
             MapReduce.main(args);
         } catch (Exception e) {

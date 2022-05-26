@@ -36,7 +36,7 @@ public class Query {
             Connection conn = DriverManager.getConnection("jdbc:duckdb:");
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(
-                    "SELECT * FROM read_parquet('batch_view/test.parquet/*.parquet') WHERE time BETWEEN " + start + " AND " + end
+                    "SELECT * FROM read_parquet('batch_view/days/*.parquet') WHERE time BETWEEN " + start + " AND " + end
                             + ";");
             while (rs.next()) {
                 int i = rs.getInt("service");

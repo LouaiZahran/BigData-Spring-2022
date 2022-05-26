@@ -20,8 +20,12 @@ public class Controller {
     @GetMapping("/analytics")
     String getAnalytics(@RequestParam String start, @RequestParam String end) throws Exception {
         System.out.println("API WORKS!");
+        long startTime = (Long.parseLong(start) - 1647938697)/60;
+        long endTime = (Long.parseLong(end) - 1647938697)/60;
+        System.out.println(startTime);
+        System.out.println(endTime);
 
-        Info3[] queryResponse = Query.getQuery(Long.parseLong(start), Long.parseLong(end));
+        Info3[] queryResponse = Query.getQuery(startTime, endTime);
 
         String response = "";
 
@@ -29,15 +33,15 @@ public class Controller {
             Info3 currentInfo = queryResponse[i];
             JSONObject obj = new JSONObject();
             obj.put("servicename", currentInfo.service);
-            obj.put("cpu", currentInfo.CPU);
-            obj.put("disk", currentInfo.Disk);
-            obj.put("ram", currentInfo.RAM);
+            obj.put("cpu", currentInfo.CPU/currentInfo.count);
+            obj.put("disk", currentInfo.Disk/currentInfo.count);
+            obj.put("ram", currentInfo.RAM/currentInfo.count);
             obj.put("cpumax", currentInfo.maxCpu);
             obj.put("diskmax", currentInfo.maxDisk);
             obj.put("rammax", currentInfo.maxRam);
-            obj.put("cpumaxtime", currentInfo.maxCPUtime);
-            obj.put("diskmaxtime", currentInfo.maxDISKtime);
-            obj.put("rammaxtime", currentInfo.maxRAMtime);
+            obj.put("cpumaxtime", currentInfo.maxCPUtime * 60 + 1647938697);
+            obj.put("diskmaxtime", currentInfo.maxDISKtime * 60 + 1647938697);
+            obj.put("rammaxtime", currentInfo.maxRAMtime * 60 + 1647938697);
             response = response.concat(obj.toString());
             response = response.concat("\n");
         }
