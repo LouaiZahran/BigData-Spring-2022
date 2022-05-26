@@ -1,4 +1,5 @@
 package com.university.bigdata.milestone2;
+import com.university.bigdata.milestone3.Obs;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -24,8 +25,8 @@ import org.apache.hadoop.util.ToolRunner;
 import org.apache.parquet.avro.AvroParquetOutputFormat;
 import org.apache.parquet.example.data.Group;
 
-public class MapReduce extends Configured implements Tool{
-
+public class MapReduce extends Configured implements Tool, Obs {
+    int Day=0;
     static Map<String,GenericRecord> mp=new HashMap<>();
 
     /// Schema
@@ -42,6 +43,17 @@ public class MapReduce extends Configured implements Tool{
         }
 
         return schema;
+    }
+
+    @Override
+    public void wakeup() {
+        String []args=new String[1];
+        args[0]="/home/moaz/Downloads/health_data/health_"+Day+".json";
+        try {
+            MapReduce.main(args);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static class TokenizerMapper extends Mapper<Object, Text, Text, DoubleWritable>{
@@ -158,16 +170,15 @@ public class MapReduce extends Configured implements Tool{
 
         // setting schema to be used
         AvroParquetOutputFormat.setSchema(job, schema);
-/*
+
         String filePath;
         if(args.length !=1){
             System.out.println("Wrong file input format");
-        }else{
-
+            System.exit(0);
         }
-*/
-        FileInputFormat.addInputPath(job, new Path("/home/moaz/health.txt"));
-        Path outputPath = new Path("batch_view/test.parquet");
+
+        FileInputFormat.addInputPath(job, new Path(args[0]));
+        Path outputPath = new Path("batch_view/days");
         FileSystem fileSystem = FileSystem.get(conf);
         if(fileSystem.exists(outputPath))
             fileSystem.delete(outputPath);
