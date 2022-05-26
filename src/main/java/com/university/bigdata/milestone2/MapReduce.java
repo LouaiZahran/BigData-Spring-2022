@@ -117,7 +117,6 @@ public class MapReduce extends Configured implements Tool{
             }
             if(!mp.get(KEY).toString().contains("null")){
                 context.write(null, mp.get(KEY));
-                //System.out.println("++++++++++++++++" + mp.get(KEY).toString());
             }
             //System.out.println("---------->" + key.toString());
             //System.out.println("============" + mp.get(KEY).toString());
@@ -159,11 +158,16 @@ public class MapReduce extends Configured implements Tool{
 
         // setting schema to be used
         AvroParquetOutputFormat.setSchema(job, schema);
+/*
+        String filePath;
+        if(args.length !=1){
+            System.out.println("Wrong file input format");
+        }else{
 
-
-
+        }
+*/
         FileInputFormat.addInputPath(job, new Path("/home/moaz/health.txt"));
-        Path outputPath = new Path("/home/moaz/Downloads/testout");
+        Path outputPath = new Path("batch_view/test.parquet");
         FileSystem fileSystem = FileSystem.get(conf);
         if(fileSystem.exists(outputPath))
             fileSystem.delete(outputPath);

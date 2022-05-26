@@ -15,13 +15,13 @@ public class Query {
     public static void main(String[] args) {
         long start = 0, end = 20;
         Info3[] out = getQuery(start, end);
-        for (int i = 0; i < 5; i++) {
-            System.out.print(out[i].CPU + " ");
-            System.out.print(out[i].RAM + " ");
-            System.out.print(out[i].Disk + " ");
-            System.out.print(out[i].maxCpu + " ");
-            System.out.print(out[i].maxRam + " ");
-            System.out.print(out[i].maxDisk + " ");
+        for (int i = 1; i < 5; i++) {
+            System.out.print(out[i].CPU/out[i].count + " ");
+            System.out.print(out[i].RAM/out[i].count  + " ");
+            System.out.print(out[i].Disk /out[i].count + " ");
+            System.out.print(out[i].maxCPUtime + " ");
+            System.out.print(out[i].maxRAMtime + " ");
+            System.out.print(out[i].maxDISKtime + " ");
             System.out.println(out[i].count + " ");
         }
     }
@@ -39,15 +39,19 @@ public class Query {
                     "SELECT * FROM read_parquet('batch_view/*.parquet') WHERE time BETWEEN " + start + " AND " + end
                             + ";");
             while (rs.next()) {
-                int i = rs.getInt("service") % 5;
+                int i = rs.getInt("service");
                 Info3 other = new Info3(i,
                         rs.getDouble("CPU"),
                         rs.getDouble("RAM"),
                         rs.getDouble("DISK"),
                         rs.getInt("count"),
+                        rs.getLong("time"),
+                        rs.getLong("time"),
+                        rs.getLong("time"),
                         rs.getDouble("CPU_MAX"),
                         rs.getDouble("RAM_MAX"),
                         rs.getDouble("DISK_MAX"));
+
                 out[i].update(other);
             }
             rs.close();
@@ -70,12 +74,15 @@ public class Query {
                     "SELECT * FROM read_parquet('realtime_view/*.parquet') WHERE time BETWEEN " + start + " AND " + end
                             + ";");
             while (rs.next()) {
-                int i = rs.getInt("service") % 5;
+                int i = rs.getInt("service") ;
                 Info3 other = new Info3(i,
                         rs.getDouble("CPU"),
                         rs.getDouble("RAM"),
                         rs.getDouble("DISK"),
                         rs.getInt("count"),
+                        rs.getLong("time"),
+                        rs.getLong("time"),
+                        rs.getLong("time"),
                         rs.getDouble("CPU_MAX"),
                         rs.getDouble("RAM_MAX"),
                         rs.getDouble("DISK_MAX"));
