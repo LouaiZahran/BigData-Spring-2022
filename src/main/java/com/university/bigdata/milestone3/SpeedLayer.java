@@ -81,6 +81,7 @@ public class SpeedLayer implements Obs{
                     .build();
             // writing records
             for (GenericData.Record record : recordList) {
+                System.out.println(record);
                 writer.write(record);
             }
         }catch(IOException e) {
@@ -128,9 +129,9 @@ public class SpeedLayer implements Obs{
         if(record1.get("time") == null)
             record1.put("time", timestamp);
         if(isMax) {
-            if(isCPU) record1.put("CPU_MAX", (int)Double.parseDouble(value));
-            else if(isRAM) record1.put("RAM_MAX", (int)Double.parseDouble(value));
-            else if(isDisk) record1.put("DISK_MAX", (int)Double.parseDouble(value));
+            if(isCPU) record1.put("CPU_MAX", Double.parseDouble(value));
+            else if(isRAM) record1.put("RAM_MAX", Double.parseDouble(value));
+            else if(isDisk) record1.put("DISK_MAX", Double.parseDouble(value));
         }else{
             if(isCPU) record1.put("CPU", Double.parseDouble(value));
             else if(isRAM) record1.put("RAM", Double.parseDouble(value));
