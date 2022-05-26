@@ -120,21 +120,24 @@ public class SpeedLayer implements Obs{
         boolean isCount = key.contains("_Count");   key = key.replace("_Count", "");
 
         int serviceNum = Integer.parseInt(key.split("_")[0].split("-")[1]);
-        long timestamp = Long.parseLong(key.split("_")[1]);
+        long timestamp = (long) Double.parseDouble(key.split("_")[1]);
 
         GenericData.Record record1 = records.getOrDefault(key, new GenericData.Record(schema));
-        record1.put("service", serviceNum);
-        record1.put("time", timestamp);
+        if(record1.get("service") == null)
+            record1.put("service", serviceNum);
+        if(record1.get("time") == null)
+            record1.put("time", timestamp);
         if(isMax) {
-            if(isCPU) record1.put("CPU_MAX", Integer.parseInt(value));
-            else if(isRAM) record1.put("RAM_MAX", Integer.parseInt(value));
-            else if(isDisk) record1.put("DISK_MAX", Integer.parseInt(value));
+            if(isCPU) record1.put("CPU_MAX", (int)Double.parseDouble(value));
+            else if(isRAM) record1.put("RAM_MAX", (int)Double.parseDouble(value));
+            else if(isDisk) record1.put("DISK_MAX", (int)Double.parseDouble(value));
         }else{
             if(isCPU) record1.put("CPU", Double.parseDouble(value));
             else if(isRAM) record1.put("RAM", Double.parseDouble(value));
             else if(isDisk) record1.put("DISK", Double.parseDouble(value));
             else if(isCount) record1.put("count", (int)Double.parseDouble(value));
         }
+        records.put(key, record1);
     }
 
     private static void wordCount(String fileName) {
@@ -149,8 +152,11 @@ public class SpeedLayer implements Obs{
         JavaPairRDD<String, String> reducedMaxRDD = rdd.filter(x -> x._1.contains("MAX")).reduceByKey(SpeedLayer::reduceMax);
 
         reducedRDD.collect().forEach(SpeedLayer::addRecord);
+        reducedMaxRDD.collect().forEach(SpeedLayer::addRecord);
 
-        writeToParquetFile(new ArrayList<>(records.values()), schema);
+        List<GenericData.Record> recordList = new ArrayList<>(records.values());
+
+        writeToParquetFile(recordList, schema);
 
         //reducedRDD.collect().forEach(tuple -> System.out.println(tuple._1 + " " + tuple._2));
         //reducedMaxRDD.collect().forEach(tuple -> System.out.println(tuple._1 + " " + tuple._2));
