@@ -115,6 +115,6 @@ public class SpeedLayer implements Obs{
 
     @Override
     public void wakeup() {
-
+        launchSpark("SpeedLayer/messages");
     }
 }

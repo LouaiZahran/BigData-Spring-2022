@@ -20,13 +20,13 @@ public class Server {
         Gson parser = new Gson();
         DatagramSocket ds = new DatagramSocket();
 
-        int currentHealthDataFile = 10;
-        String path = "health_data/health_";
+        int currentHealthDataFile = 0;
+        String path = "health_";
         File currentFile = new File(path + String.valueOf(currentHealthDataFile) + ".json");
         FileReader fileReader = new FileReader(currentFile);
 
-        InetAddress speedIP = InetAddress.getByName("192.168.43.149");
-        InetAddress batchIP = InetAddress.getByName("192.168.43.150");
+        InetAddress speedIP = InetAddress.getLocalHost();
+        InetAddress batchIP = InetAddress.getLocalHost();
         List<Byte> buf = new ArrayList<>();
 
         int currentChar = 0, prevChar = 0, idx = 0;
@@ -39,19 +39,22 @@ public class Server {
                 buf.add((byte)currentChar);
                 if((char) currentChar == '}' && (char) prevChar == '}') { //End of message
                     byte[] buffer = new byte[buf.size()];
-                    for(int i=0; i<buffer.length; i++)
+                    for(int i=0; i<buffer.length; i++) {
                         buffer[i] = buf.get(i);
+                        System.out.print((char)buffer[i]);
+                    }
                     DatagramPacket speedPacket = new DatagramPacket(buffer, buffer.length, speedIP, 3500);
-                    DatagramPacket batchPacket = new DatagramPacket(buffer, buffer.length, batchIP, 3500);
+                    DatagramPacket batchPacket = new DatagramPacket(buffer, buffer.length, batchIP, 3505);
                     ds.send(speedPacket);
                     ds.send(batchPacket);
-                    break;
                 }
                 prevChar = currentChar;
             }
 
             currentHealthDataFile++;
             currentFile = new File(path + String.valueOf(currentHealthDataFile) + ".json");
+            if(!currentFile.exists())
+                break;
             fileReader = new FileReader(currentFile);
         }
     }

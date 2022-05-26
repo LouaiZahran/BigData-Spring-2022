@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Milestone3Application {
 
-    public static Scheduler scheduler = new Scheduler(10000);
+    public static Scheduler scheduler = new Scheduler(100000);
 
     public static void main(String[] args) {
         Thread schedulerThread = new Thread(scheduler);

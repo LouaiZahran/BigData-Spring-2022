@@ -166,7 +166,7 @@ public class MapReduce extends Configured implements Tool{
 
         }
 */
-        FileInputFormat.addInputPath(job, new Path("/home/moaz/health.txt"));
+        FileInputFormat.addInputPath(job, new Path("health_0.json"));
         Path outputPath = new Path("batch_view/test.parquet");
         FileSystem fileSystem = FileSystem.get(conf);
         if(fileSystem.exists(outputPath))

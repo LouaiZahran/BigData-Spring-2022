@@ -27,11 +27,11 @@ public class ParquetWriter {
     }
 
     public static void writeToParquetFile(List<GenericData.Record> recordList, Schema schema) {
-        File file = new File("data.parquet");
+        File file = new File("realtime_view/data.parquet");
         if(file.exists())
             file.delete();
         // Output path for Parquet file in HDFS
-        Path path =	new	Path("data.parquet");
+        Path path =	new	Path("realtime_view/data.parquet");
         org.apache.parquet.hadoop.ParquetWriter<GenericData.Record> writer = null;
         // Creating ParquetWriter using builder
         try {

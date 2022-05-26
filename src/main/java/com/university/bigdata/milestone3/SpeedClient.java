@@ -1,24 +1,20 @@
 package com.university.bigdata.milestone3;
 
-import com.google.gson.Gson;
-
 import java.io.FileWriter;
-import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class client {
+public class SpeedClient {
     public static void main(String[] args) throws Exception
     {
         boolean isBatchLayer = false;
 
-        //Create a socket to listen at port 3500
-        DatagramSocket socket = new DatagramSocket(3500);
+        //Create a socket to listen at port 3505
+        DatagramSocket socket = new DatagramSocket(3505);
 
         //Buffer to hold the 1024 messages
         ArrayList<String> buffer =new ArrayList();
@@ -27,6 +23,7 @@ public class client {
         byte[] receive = new byte[10000];
 
         DatagramPacket packet = null;
+        int counter = 0;
         while (true){
 
             packet = new DatagramPacket(receive, receive.length);
@@ -38,11 +35,9 @@ public class client {
 
             if(buffer.size() == 10){
 
-                DateFormat df = new SimpleDateFormat("dd_MM_yyyy");
-                String data = df.format(new Date());
-
-                String fileName = data + ".log";
-                FileWriter writer = new FileWriter(fileName);
+                String fileName = counter + ".log";
+                counter++;
+                FileWriter writer = new FileWriter("SpeedLayer/messages/" + fileName);
                 for(int i=0; i<10; i++)
                     writer.write(buffer.get(i));
                 writer.close();
@@ -60,10 +55,6 @@ public class client {
         }
     }
 
-    public static void HDFSWrite(ArrayList<String> buffer){
-        System.out.printf("Write to HDFS");
-        buffer.clear();
-    }
     // A utility method to convert the byte array
     // data into a string representation.
     public static String toString(byte[] a)
@@ -79,4 +70,5 @@ public class client {
         }
         return ret.toString();
     }
+
 }
